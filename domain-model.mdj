@@ -142,7 +142,7 @@
 											"top": 285,
 											"width": 255,
 											"height": 13,
-											"text": "-id: UUID",
+											"text": "-id: CustomerId",
 											"horizontalAlignment": 0
 										},
 										{
@@ -160,7 +160,7 @@
 											"top": 300,
 											"width": 255,
 											"height": 13,
-											"text": "-fullName: String",
+											"text": "-fullName: FullName",
 											"horizontalAlignment": 0
 										},
 										{
@@ -178,7 +178,7 @@
 											"top": 315,
 											"width": 255,
 											"height": 13,
-											"text": "-birthDate: LocalDate",
+											"text": "-birthDate: BirthDate",
 											"horizontalAlignment": 0
 										},
 										{
@@ -196,7 +196,7 @@
 											"top": 330,
 											"width": 255,
 											"height": 13,
-											"text": "-email: String",
+											"text": "-email: Email",
 											"horizontalAlignment": 0
 										},
 										{
@@ -214,7 +214,7 @@
 											"top": 345,
 											"width": 255,
 											"height": 13,
-											"text": "-phone: String",
+											"text": "-phone: Phone",
 											"horizontalAlignment": 0
 										},
 										{
@@ -232,7 +232,7 @@
 											"top": 360,
 											"width": 255,
 											"height": 13,
-											"text": "-document: String",
+											"text": "-document: Document",
 											"horizontalAlignment": 0
 										},
 										{
@@ -322,7 +322,7 @@
 											"top": 435,
 											"width": 255,
 											"height": 13,
-											"text": "-loyaltyPoints: Integer",
+											"text": "-loyaltyPoints: LoyaltyPoints",
 											"horizontalAlignment": 0
 										}
 									],
@@ -358,7 +358,7 @@
 											"top": 458,
 											"width": 255,
 											"height": 13,
-											"text": "+addLoyaltyPoints(Integer)",
+											"text": "+addLoyaltyPoints(LoyaltyPoints)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -448,7 +448,7 @@
 											"top": 533,
 											"width": 255,
 											"height": 13,
-											"text": "+changeName(String)",
+											"text": "+changeName(FullName)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -466,7 +466,7 @@
 											"top": 548,
 											"width": 255,
 											"height": 13,
-											"text": "+changeEmail(String)",
+											"text": "+changeEmail(Email)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -484,7 +484,7 @@
 											"top": 563,
 											"width": 255,
 											"height": 13,
-											"text": "+changePhone(String)",
+											"text": "+changePhone(Phone)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3773,7 +3773,7 @@
 							},
 							"name": "id",
 							"visibility": "private",
-							"type": "UUID"
+							"type": "CustomerId"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3783,7 +3783,7 @@
 							},
 							"name": "fullName",
 							"visibility": "private",
-							"type": "String"
+							"type": "FullName"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3793,7 +3793,7 @@
 							},
 							"name": "birthDate",
 							"visibility": "private",
-							"type": "LocalDate"
+							"type": "BirthDate"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3803,7 +3803,7 @@
 							},
 							"name": "email",
 							"visibility": "private",
-							"type": "String"
+							"type": "Email"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3813,7 +3813,7 @@
 							},
 							"name": "phone",
 							"visibility": "private",
-							"type": "String"
+							"type": "Phone"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3823,7 +3823,7 @@
 							},
 							"name": "document",
 							"visibility": "private",
-							"type": "String"
+							"type": "Document"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -3873,7 +3873,7 @@
 							},
 							"name": "loyaltyPoints",
 							"visibility": "private",
-							"type": "Integer"
+							"type": "LoyaltyPoints"
 						}
 					],
 					"operations": [
@@ -3891,8 +3891,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGYV8+wIW/TPY8="
 									},
-									"name": "Integer",
-									"type": ""
+									"name": "LoyaltyPoints"
 								}
 							]
 						},
@@ -3953,8 +3952,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGYW/t1gvDmxOg="
 									},
-									"name": "String",
-									"type": ""
+									"name": "FullName"
 								}
 							]
 						},
@@ -3972,8 +3970,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGYW/uj/PDvqXs="
 									},
-									"name": "String",
-									"type": ""
+									"name": "Email"
 								}
 							]
 						},
@@ -3991,8 +3988,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGYW/vMRPD4G8M="
 									},
-									"name": "String",
-									"type": ""
+									"name": "Phone"
 								}
 							]
 						}
@@ -4449,7 +4445,7 @@
 											"top": 307,
 											"width": 271,
 											"height": 13,
-											"text": "-id: UUID",
+											"text": "-id: CustomerId",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4467,7 +4463,7 @@
 											"top": 322,
 											"width": 271,
 											"height": 13,
-											"text": "-fullName: String",
+											"text": "-fullName: FullName",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4485,7 +4481,7 @@
 											"top": 337,
 											"width": 271,
 											"height": 13,
-											"text": "-birthDate: LocalDate",
+											"text": "-birthDate: BirthDate",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4503,7 +4499,7 @@
 											"top": 352,
 											"width": 271,
 											"height": 13,
-											"text": "-email: String",
+											"text": "-email: Email",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4521,7 +4517,7 @@
 											"top": 367,
 											"width": 271,
 											"height": 13,
-											"text": "-phone: String",
+											"text": "-phone: Phone",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4539,7 +4535,7 @@
 											"top": 382,
 											"width": 271,
 											"height": 13,
-											"text": "-document: String",
+											"text": "-document: Document",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4629,7 +4625,7 @@
 											"top": 457,
 											"width": 271,
 											"height": 13,
-											"text": "-loyaltyPoints: Integer",
+											"text": "-loyaltyPoints: LoyaltyPoints",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4665,7 +4661,7 @@
 											"top": 480,
 											"width": 271,
 											"height": 13,
-											"text": "+addLoyaltyPoints(Integer)",
+											"text": "+addLoyaltyPoints(LoyaltyPoints)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4755,7 +4751,7 @@
 											"top": 555,
 											"width": 271,
 											"height": 13,
-											"text": "+changeName(String)",
+											"text": "+changeName(FullName)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4773,7 +4769,7 @@
 											"top": 570,
 											"width": 271,
 											"height": 13,
-											"text": "+changeEmail(String)",
+											"text": "+changeEmail(Email)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4791,7 +4787,7 @@
 											"top": 585,
 											"width": 271,
 											"height": 13,
-											"text": "+changePhone(String)",
+											"text": "+changePhone(Phone)",
 											"horizontalAlignment": 0
 										}
 									],
