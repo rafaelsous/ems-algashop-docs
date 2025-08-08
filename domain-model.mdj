@@ -9628,7 +9628,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGYcVSDLw4WvhM="
 									},
-									"name": "Product"
+									"name": "Product",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -9636,7 +9637,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGYcVSDLw4WvhM="
 									},
-									"name": "Quantity"
+									"name": "Quantity",
+									"type": ""
 								}
 							]
 						},
@@ -9673,7 +9675,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGYcV8sV1vJLk4="
 									},
-									"name": "Billing"
+									"name": "Billing",
+									"type": ""
 								}
 							]
 						},
@@ -9691,7 +9694,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGYcV9pdF0NNho="
 									},
-									"name": "Shipping"
+									"name": "Shipping",
+									"type": ""
 								}
 							]
 						},
@@ -11971,7 +11975,7 @@
 											"top": 522,
 											"width": 307.48388671875,
 											"height": 13,
-											"text": "+changeBilling(BillingInfo)",
+											"text": "+changeBilling(Billing)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -11989,7 +11993,7 @@
 											"top": 537,
 											"width": 307.48388671875,
 											"height": 13,
-											"text": "+changeShipping(ShippingInfo, Money, LocalDate)",
+											"text": "+changeShipping(Shipping)",
 											"horizontalAlignment": 0
 										},
 										{
