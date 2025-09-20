@@ -54,3 +54,121 @@ paths:
           schema:
             type: string
           example: "0199675d-e16f-70c5-932e-207998e5e1b4"
+
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "0199675d-e16f-70c5-932e-207998e5e1b4"
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        email:
+          type: string
+          format: email
+          example: "johndoe@example.com"
+        document:
+          type: string
+          example: "12345"
+        phone:
+          type: string
+          example: "1191234564"
+        birthDate:
+          type: string
+          format: date
+          example: "1990-01-01"
+        loayaltyPoints:
+          type: integer
+          example: 100
+        registeredAt:
+          type: string
+          format: date-time
+          example: "2023-10-01T12:00:00Z"
+        archivedAt:
+          type: string
+          format: date-time
+          example: "2023-12-01T12:00:00Z"
+        promotionNotificationsAllowed:
+          type: boolean
+          example: false
+        archived:
+          type: boolean
+          example: false
+        address:
+          $ref: '#/components/schemas/Address'
+    Address:
+          type: object
+          properties:
+            street:
+              type: string
+              example: "123 Main St"
+            number:
+              type: string
+              example: "100"
+            complement:
+              type: string
+              example: "Apt 4B"
+            neighborhood:
+              type: string
+              example: "Downtown"
+            city:
+              type: string
+              example: "Springfield"
+            state:
+              type: string
+              example: "South Carolina"
+            zipCode:
+              type: string
+              example: "62701"
+    CustomerInput:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        email:
+          type: string
+          format: email
+          example: "johndoe@example.com"
+        document:
+          type: string
+          example: "12345"
+        phone:
+          type: string
+          example: "1191234564"
+        birthDate:
+          type: string
+          format: date
+          example: "1990-01-01"
+        promotionNotificationsAllowed:
+          type: boolean
+          example: false
+        address:
+          $ref: '#/components/schemas/Address'
+    CustomerUpdateInput:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        phone:
+          type: string
+          example: "1191234564"
+        promotionNotificationsAllowed:
+          type: boolean
+          example: false
+        address:
+          $ref: '#/components/schemas/Address'
