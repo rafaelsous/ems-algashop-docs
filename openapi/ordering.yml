@@ -76,7 +76,7 @@ paths:
                       content:
                         type: array
                         items:
-                          $ref: '#/components/schemas/Customer'
+                          $ref: '#/components/schemas/CustomerSummary'
   /api/v1/customers/{customerId}:
     get:
       description: Get customer details by ID
@@ -275,50 +275,36 @@ components:
           example: false
         address:
           $ref: '#/components/schemas/Address'
-    Address:
+    CustomerSummary:
       type: object
       required:
-        - street
-        - number
-        - neighborhood
-        - city
-        - state
-        - zipCode
+        - id
+        - firstName
+        - lastName
+        - email
+        - phone
+        - archived
       properties:
-            street:
-              type: string
-              example: "123 Main St"
-              nullable: false
-              x-validation: "notBlank"
-            number:
-              type: string
-              example: "100"
-              nullable: false
-              x-validation: "notBlank"
-            complement:
-              type: string
-              example: "Apt 4B"
-              nullable: true
-            neighborhood:
-              type: string
-              example: "Downtown"
-              nullable: false
-              x-validation: "notBlank"
-            city:
-              type: string
-              example: "Springfield"
-              nullable: false
-              x-validation: "notBlank"
-            state:
-              type: string
-              example: "South Carolina"
-              nullable: false
-              x-validation: "notBlank"
-            zipCode:
-              type: string
-              example: "62701"
-              nullable: false
-              x-validation: "notBlank"
+        id:
+          type: string
+          format: uuid
+          example: "0199675d-e16f-70c5-932e-207998e5e1b4"
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        email:
+          type: string
+          format: email
+          example: "johndoe@example.com"
+        phone:
+          type: string
+          example: "1191234564"
+        archived:
+          type: boolean
+          example: false
     CustomerInput:
       type: object
       required:
@@ -398,6 +384,50 @@ components:
           nullable: false
         address:
           $ref: '#/components/schemas/Address'
+    Address:
+      type: object
+      required:
+        - street
+        - number
+        - neighborhood
+        - city
+        - state
+        - zipCode
+      properties:
+            street:
+              type: string
+              example: "123 Main St"
+              nullable: false
+              x-validation: "notBlank"
+            number:
+              type: string
+              example: "100"
+              nullable: false
+              x-validation: "notBlank"
+            complement:
+              type: string
+              example: "Apt 4B"
+              nullable: true
+            neighborhood:
+              type: string
+              example: "Downtown"
+              nullable: false
+              x-validation: "notBlank"
+            city:
+              type: string
+              example: "Springfield"
+              nullable: false
+              x-validation: "notBlank"
+            state:
+              type: string
+              example: "South Carolina"
+              nullable: false
+              x-validation: "notBlank"
+            zipCode:
+              type: string
+              example: "62701"
+              nullable: false
+              x-validation: "notBlank"
     ProblemDetail:
       type: object
       required:
