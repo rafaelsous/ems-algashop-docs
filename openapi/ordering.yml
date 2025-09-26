@@ -52,9 +52,14 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Customer'
+                allOf:
+                  - $ref: '#/components/schemas/Page'
+                  - type: object
+                    properties:
+                      content:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Customer'
   /api/v1/customers/{customerId}:
     get:
       description: Get customer details by ID
@@ -373,3 +378,25 @@ components:
         fields:
           type: object
           description: "List of fields with validation errors"
+    Page:
+      type: object
+      required:
+        - content
+        - size
+        - number
+        - totalElements
+        - totalPages
+      properties:
+        number:
+          type: integer
+          example: 2
+        size:
+          type: integer
+          example: 10
+        totalElements:
+          type: integer
+          example: 100
+        totalPages:
+          type: integer
+          example: 10
+    
