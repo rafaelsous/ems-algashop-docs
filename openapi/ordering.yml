@@ -35,13 +35,13 @@ paths:
               description: 'URL of the created customer'
               example: '/api/v1/customers/0199675d-e16f-70c5-932e-207998e5e1b4'
         400:
-          description: 'Invalid input data'
+          $ref: '#/components/responses/BadRequest'
         409:
-          description: 'Conflict - e.g., email already exists'
+          $ref: '#/components/responses/Conflict'
         422:
-          description: 'Unprocessable Entity - e.g., validation errors'
+          $ref: '#/components/responses/UnprocessableEntity'
         500:
-          description: 'Internal server error'
+          $ref: '#/components/responses/InternalServerError'
     get:
       description: List all customers
       tags:
@@ -75,7 +75,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Customer'
         404:
-          description: 'Customer not found'
+          $ref: '#/components/responses/NotFound'
     put:
       description: Update customer details by ID
       tags:
@@ -101,15 +101,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/Customer'
         400:
-          description: 'Invalid input data'
+          $ref: '#/components/responses/BadRequest'
         404:
-          description: 'Customer not found'
+          $ref: '#/components/responses/NotFound'
         409:
-          description: 'Conflict - e.g., email already exists'
+          $ref: '#/components/responses/Conflict'
         422:
-          description: 'Unprocessable Entity - e.g., validation errors'
+          $ref: '#/components/responses/UnprocessableEntity'
         500:
-          description: 'Internal server error'
+          $ref: '#/components/responses/InternalServerError'
     delete:
       description: Delete customer by ID
       tags:
@@ -125,9 +125,40 @@ paths:
         204:
           description: 'Customer deleted successfully'
         404:
-          description: 'Customer not found'
+          $ref: '#/components/responses/NotFound'
 
 components:
+  responses:
+    BadRequest:
+      description: 'Invalid request'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    NotFound:
+      description: 'Resource not found'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    Conflict:
+      description: 'Conflict - e.g., resource already exists'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    UnprocessableEntity:
+      description: 'Unprocessable Entity - e.g., validation errors'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
+    InternalServerError:
+      description: 'Internal server error'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetail'
   schemas:
     Customer:
       type: object
@@ -311,3 +342,34 @@ components:
           nullable: false
         address:
           $ref: '#/components/schemas/Address'
+    ProblemDetail:
+      type: object
+      required:
+        - status
+        - type
+      properties:
+        status:
+          type: integer
+          format: int32
+          example: 400
+        type:
+          type: string
+          format: uri
+          example: "https://example.com/probs/out-of-credit"
+        title:
+          type: string
+          example: "You do not have enough credit."
+        instance:
+          type: string
+          format: uri
+          example: "/api/v1/customers"
+        detail:
+          type: string
+          example: "Your current balance is 30, but that costs 50."
+        timestamp:
+          type: string
+          format: date-time
+          example: "2023-10-01T12:00:00Z"
+        fields:
+          type: object
+          description: "List of fields with validation errors"
