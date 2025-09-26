@@ -131,6 +131,19 @@ components:
   schemas:
     Customer:
       type: object
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - document
+        - phone
+        - birthDate
+        - loayaltyPoints
+        - registeredAt
+        - promotionNotificationsAllowed
+        - archived
+        - address
       properties:
         id:
           type: string
@@ -176,71 +189,125 @@ components:
         address:
           $ref: '#/components/schemas/Address'
     Address:
-          type: object
-          properties:
+      type: object
+      required:
+        - street
+        - number
+        - neighborhood
+        - city
+        - state
+        - zipCode
+      properties:
             street:
               type: string
               example: "123 Main St"
+              nullable: false
+              x-validation: "notBlank"
             number:
               type: string
               example: "100"
+              nullable: false
+              x-validation: "notBlank"
             complement:
               type: string
               example: "Apt 4B"
+              nullable: true
             neighborhood:
               type: string
               example: "Downtown"
+              nullable: false
+              x-validation: "notBlank"
             city:
               type: string
               example: "Springfield"
+              nullable: false
+              x-validation: "notBlank"
             state:
               type: string
               example: "South Carolina"
+              nullable: false
+              x-validation: "notBlank"
             zipCode:
               type: string
               example: "62701"
+              nullable: false
+              x-validation: "notBlank"
     CustomerInput:
       type: object
+      required:
+        - firstName
+        - lastName
+        - email
+        - document
+        - phone
+        - birthDate
+        - promotionNotificationsAllowed
+        - address
       properties:
         firstName:
           type: string
           example: "John"
+          nullable: false
+          x-validation: "notBlank"
         lastName:
           type: string
           example: "Doe"
+          nullable: false
+          x-validation: "notBlank"
         email:
           type: string
           format: email
           example: "johndoe@example.com"
+          nullable: false
+          x-validation: ["notBlank", "email"]
         document:
           type: string
           example: "12345"
+          nullable: false
+          x-validation: "notBlank"
         phone:
           type: string
           example: "1191234564"
+          nullable: false
+          x-validation: "notBlank"
         birthDate:
           type: string
           format: date
           example: "1990-01-01"
+          x-validation: "pastDate"
         promotionNotificationsAllowed:
           type: boolean
           example: false
+          nullable: false
         address:
           $ref: '#/components/schemas/Address'
     CustomerUpdateInput:
       type: object
+      required:
+        - firstName
+        - lastName
+        - phone
+        - promotionNotificationsAllowed
+        - address
       properties:
         firstName:
           type: string
           example: "John"
+          nullable: false
+          x-validation: "notBlank"
         lastName:
           type: string
           example: "Doe"
+          nullable: false
+          x-validation: "notBlank"
         phone:
           type: string
           example: "1191234564"
+          nullable: false
+          x-validation: "notBlank"
         promotionNotificationsAllowed:
           type: boolean
           example: false
+          nullable: false
         address:
           $ref: '#/components/schemas/Address'
