@@ -610,11 +610,9 @@ components:
           format: date-time
           example: "2024-04-04T00:12:45Z"
         status:
-          type: string
-          example: "PAID"
+          $ref: "#/components/schemas/OrderStatus"
         paymentMethod:
-          type: string
-          example: "GATEWAY_BALANCE"
+          $ref: "#/components/schemas/PaymentMethod"
         shipping:
           $ref: "#/components/schemas/Shipping"
         billing:
@@ -770,4 +768,18 @@ components:
         phone:
           type: string
           example: "1191234564"
-    
+    OrderStatus:
+      type: string
+      enum:
+        - DRAFT
+        - PLACED
+        - PAID
+        - READY
+        - CANCELED
+      example: "PAID"
+    PaymentMethod:
+      type: string
+      enum:
+        - GATEWAY_BALANCE
+        - CREDIT_CARD
+      example: "GATEWAY_BALANCE"
