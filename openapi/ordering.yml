@@ -184,7 +184,106 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         500:
           $ref: '#/components/responses/InternalServerError'
-            
+    get:
+      tags:
+        - Orders
+      description: Get a list of orders
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - DRAFT
+              - PLACED
+              - PAID
+              - READY
+              - CANCELED
+            example: "PAID"
+          required: false
+        - name: orderedDateFrom
+          in: query
+          schema:
+            type: string
+            format: date
+            example: "2024-01-01"
+          required: false
+        - name: orderedDateTo
+          in: query
+          schema:
+            type: string
+            format: date
+            example: "2024-01-31"
+          required: false
+        - name: totalAmountFrom
+          in: query
+          schema:
+            type: number
+            example: 50.00
+          required: false
+        - name: totalAmountTo
+          in: query
+          schema:
+            type: number
+            example: 100.00
+          required: false
+        - name: orderId
+          in: query
+          schema:
+            type: string
+            example: "01226N0640J7Q"
+          required: false
+        - name: customerId
+          in: query
+          schema:
+            type: string
+            example: "0199675d-e16f-70c5-932e-207998e5e1b4"
+          required: false
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/direction'
+      responses:
+        200:
+          description: A list of orders
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Page'
+                  - type: object
+                    properties:
+                      content:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/OrderSummary'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        404:
+          $ref: '#/components/responses/NotFound'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /api/v1/orders/{orderId}:
+    get:
+      tags:
+        - Orders
+      description: Get order details by ID
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "01226N0640J7Q"
+      responses:
+        200:
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        404:
+          $ref: '#/components/responses/NotFound'
 
 components:
   parameters:
@@ -783,3 +882,48 @@ components:
         - GATEWAY_BALANCE
         - CREDIT_CARD
       example: "GATEWAY_BALANCE"
+    OrderSummary:
+      required:
+        - id
+        - customer
+        - paymentMethod
+        - totalItems
+        - totalAmount
+        - placedAt
+        - canceledAt
+        - paidAt
+        - readyAt
+        - status
+      properties:
+        id:
+          type: string
+          example: "01226N0640J7Q"
+        customer:
+          $ref: "#/components/schemas/CustomerMinimal"
+        totalItems:
+          type: integer
+          example: 2
+        totalAmount:
+          type: number
+          example: 41.98
+        placedAt:
+          type: string
+          format: date-time
+          example: "2024-04-04T00:12:45Z"
+        canceledAt:
+          type: string
+          format: date-time
+          example: "2024-04-04T00:12:45Z"
+        paidAt:
+          type: string
+          format: date-time
+          example: "2024-04-04T00:12:45Z"
+        readyAt:
+          type: string
+          format: date-time
+          example: "2024-04-04T00:12:45Z"
+        status:
+          $ref: "#/components/schemas/OrderStatus"
+        paymentMethod:
+          $ref: "#/components/schemas/PaymentMethod"
+    
