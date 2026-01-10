@@ -792,8 +792,12 @@ components:
           x-validation: "positive"
         paymentMethod:
           type: string
-          example: "GATEWAY_BALANCE"
+          example: "CREDIT_CARD"
           nullable: false
+        creditCardId:
+          type: string
+          example: "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+          nullable: true
         shipping:
           $ref: "#/components/schemas/ShippingInput"
         billing:
@@ -811,8 +815,12 @@ components:
           nullable: false
         paymentMethod:
           type: string
-          example: "GATEWAY_BALANCE"
+          example: "CREDIT_CARD"
           nullable: false
+        creditCardId:
+          type: string
+          example: "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
+          nullable: true
         shipping:
           $ref: "#/components/schemas/ShippingInput"
         billing:
@@ -832,6 +840,7 @@ components:
         - items
         - shipping
         - billing
+        - creditCard
       properties:
         id:
           type: string
@@ -864,6 +873,9 @@ components:
           $ref: "#/components/schemas/OrderStatus"
         paymentMethod:
           $ref: "#/components/schemas/PaymentMethod"
+        creditCardId:
+          type: string
+          example: "28fcd9fb-4ce7-44d6-9583-14d8b3dc5aff"
         shipping:
           $ref: "#/components/schemas/Shipping"
         billing:
@@ -1033,7 +1045,7 @@ components:
       enum:
         - GATEWAY_BALANCE
         - CREDIT_CARD
-      example: "GATEWAY_BALANCE"
+      example: "CREDIT_CARD"
     OrderSummary:
       required:
         - id
