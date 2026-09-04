@@ -27,6 +27,17 @@ channels:
           min.insync.replicas: 2
         bindingVersion: 0.5.0
 
+operations:
+  sendProductEvents:
+    action: send # Producer
+    channel:
+      $ref: "#/channels/productEvents"
+    summary: Send product catalog events to the Kafka topic.
+    tags:
+      - name: Products
+    messages:
+      - $ref: "#/channels/productEvents/messages/productAdded"
+
 components:
   messages:
     ProductAddedEvent:
