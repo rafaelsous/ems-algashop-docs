@@ -1,7 +1,7 @@
 asyncapi: 3.1.0
 
 info:
-  title: AlgaShop - Product Catalog AsyncAPI
+  title: AlgaShop - Ordering AsyncAPI
   version: "1.0.0"
 
 servers:
@@ -16,8 +16,6 @@ channels:
     title: Product Events Channel
     description: Channel for product catalog events.
     messages:
-      productAdded:
-        $ref: "./messages.yml#/components/messages/ProductAddedEvent"
       productPriceChanged:
         $ref: "./messages.yml#/components/messages/ProductPriceChangedEvent"
       productPriceChangedV2:
@@ -32,14 +30,13 @@ channels:
         bindingVersion: 0.5.0
 
 operations:
-  sendProductEvents:
-    action: send # Producer
+  consumeProductEvents:
+    action: receive # Consumer
     channel:
       $ref: "#/channels/productEvents"
     summary: Send product catalog events to the Kafka topic.
     tags:
       - name: Products
     messages:
-      - $ref: "#/channels/productEvents/messages/productAdded"
       - $ref: "#/channels/productEvents/messages/productPriceChanged"
       - $ref: "#/channels/productEvents/messages/productPriceChangedV2"
