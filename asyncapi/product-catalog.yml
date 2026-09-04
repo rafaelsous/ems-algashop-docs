@@ -43,9 +43,7 @@ components:
           - addedAt
         properties:
           productId:
-            type: string
-            description: Unique identifier of the product.
-            example: "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+            $ref: "#/components/schemas/ProductId"
           addedAt:
             type: string
             format: date-time
@@ -60,3 +58,21 @@ components:
             type: string
             const: "ProductCatalog.ProductAddedIntegrationEvent"
             description: Type identifier for the event, used for deserialization on the consumer side.
+      traits:
+        - $ref: "#/components/messageTraits/KafkaProductKey"
+
+  schemas:
+    ProductId:
+      type: string
+      description: Unique identifier of the product.
+      example: "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+
+  messageTraits:
+    KafkaProductKey:
+      bindings:
+        kafka:
+          key:
+            type: string
+            description: The key used for partitioning the message in Kafka.
+            example: "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+          bindingVersion: 0.5.0
