@@ -18,6 +18,10 @@ channels:
     messages:
       productAdded:
         $ref: "#/components/messages/ProductAddedEvent"
+      productPriceChanged:
+        $ref: "#/components/messages/ProductPriceChangedEvent"
+      productPriceChangedV2:
+        $ref: "#/components/messages/ProductPriceChangedEventV2"
     bindings:
       kafka:
         topic: product-catalog.product.events
@@ -37,6 +41,8 @@ operations:
       - name: Products
     messages:
       - $ref: "#/channels/productEvents/messages/productAdded"
+      - $ref: "#/channels/productEvents/messages/productPriceChanged"
+      - $ref: "#/channels/productEvents/messages/productPriceChangedV2"
 
 components:
   messages:
@@ -71,12 +77,89 @@ components:
             description: Type identifier for the event, used for deserialization on the consumer side.
       traits:
         - $ref: "#/components/messageTraits/KafkaProductKey"
+    ProductPriceChangedEvent:
+      name: ProductPriceChangedEvent
+      title: Product Price Changed Event
+      summary: Event triggered when a product's price is changed in the catalog.
+      contentType: application/json
+      deprecated: true
+      tags:
+        - name: Products
+      headers:
+        type: object
+        required:
+          - __TypeId__
+        properties:
+          __TypeId__:
+            type: string
+            const: "ProductCatalog.ProductPriceChangedEventIntegrationEvent"
+      payload:
+        type: object
+        deprecated: true
+        required:
+          - productId
+          - changedAt
+        properties:
+          productId:
+            $ref: "#/components/schemas/ProductId"
+          changedAt:
+            type: string
+            format: date-time
+            example: "2024-04-04T00:12:45Z"
+      traits:
+        - $ref: "#/components/messageTraits/KafkaProductKey"
+    ProductPriceChangedEventV2:
+      name: ProductPriceChangedEventV2
+      title: Product Price Changed Event (v2)
+      summary: Event triggered when a product's price is changed in the catalog (v2).
+      contentType: application/json
+      tags:
+        - name: Products
+      headers:
+        type: object
+        required:
+          - __TypeId__
+        properties:
+          __TypeId__:
+            type: string
+            const: "ProductCatalog.ProductPriceChangedEventV2IntegrationEvent"
+      payload:
+        type: object
+        required:
+          - productId
+          - changedAt
+          - oldRegularPrice
+          - oldSalePrice
+          - newRegularPrice
+          - newSalePrice
+        properties:
+          productId:
+            $ref: "#/components/schemas/ProductId"
+          changedAt:
+            type: string
+            format: date-time
+            example: "2024-04-04T00:12:45Z"
+          oldRegularPrice:
+            $ref: "#/components/schemas/Money"
+          oldSalePrice:
+            $ref: "#/components/schemas/Money"
+          newRegularPrice:
+            $ref: "#/components/schemas/Money"
+          newSalePrice:
+            $ref: "#/components/schemas/Money"
+      traits:
+        - $ref: "#/components/messageTraits/KafkaProductKey"
 
   schemas:
     ProductId:
       type: string
       description: Unique identifier of the product.
       example: "fcc2897f-70a8-4c87-a4d0-26a4e0bb36dc"
+    Money:
+      type: number
+      format: double
+      description: Represents an amount of money.
+      example: 99.99
 
   messageTraits:
     KafkaProductKey:
