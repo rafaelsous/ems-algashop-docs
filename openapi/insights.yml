@@ -35,9 +35,21 @@ paths:
                   $ref: "#/components/schemas/TopSellingProduct"
         "400":
           $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/Forbidden"
 
 components:
   responses:
+    Unauthorized:
+      description: Missing, invalid or expired bearer token (no body, `WWW-Authenticate` header)
+    Forbidden:
+      description: The token does not carry the scope required by the operation, or the user is a customer
+      content:
+        application/problem+json:
+          schema:
+            $ref: "#/components/schemas/ProblemDetail"
     BadRequest:
       description: Invalid request
       content:
